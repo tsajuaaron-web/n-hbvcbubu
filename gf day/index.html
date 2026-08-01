@@ -3,104 +3,481 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Girlfriend's Day❤️</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<body>
-<div class="container">
-<div id="hearts-container"></div>
 
-<!-- Your other content -->
+<title>Happy Girlfriend's Day ❤️</title>
 
-<script src="script.js"></script>
-</body>
+<style>
 
-<h1>Happy Girlfriend's Day Myyy Cutiee Noruuuuss😋 ❤️</h1>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
 
-<img src="https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=800"
-class="photo">
+body{
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+overflow-x:hidden;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
 
-<p>
-Every moment with you becomes my favorite memory.
-Thank you for filling my life with love, happiness and endless smiles.
-</p>
+.container{
+background:white;
+width:90%;
+max-width:900px;
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+position:relative;
+z-index:2;
+}
 
-<a href="memories.html" class="btn">Next ➜</a>
-<div class="love-meter">
+h1{
+font-size:42px;
+color:#ff2d55;
+margin-bottom:20px;
+}
 
-    <h2>❤️ Love Meter ❤️</h2>
+p{
+font-size:20px;
+line-height:1.7;
+color:#444;
+margin:20px 0;
+}
 
-    <div class="meter">
-        <div class="fill" id="fill"></div>
-    </div>
+.btn{
+padding:15px 35px;
+background:#ff2d55;
+color:white;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-size:18px;
+margin-top:20px;
+}
 
-    <h1 id="percent">0%</h1>
+.btn:hover{
+transform:scale(1.05);
+}
 
-    <button onclick="startLoveMeter()" class="btn">
-        💖 Check Love
-    </button>
+hr{
+margin:50px 0;
+}
 
-    <p id="result"></p>
+/* Floating Hearts */
 
-</div>
-</div>
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+#hearts{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:1;
+}
 
-<script>
-const music = document.getElementById("bgMusic");
+.heart{
+position:absolute;
+bottom:-50px;
+animation:float linear forwards;
+}
 
-window.onload = () => {
-    const time = localStorage.getItem("musicTime");
-    if (time) music.currentTime = time;
+@keyframes float{
 
-    music.play().catch(() => {});
-};
+0%{
+transform:translateY(0) scale(.5);
+opacity:0;
+}
 
-setInterval(() => {
-    localStorage.setItem("musicTime", music.currentTime);
-}, 1000);
-</script>
-</audio>
-<script>
+20%{
+opacity:1;
+}
 
-function startLoveMeter(){
-
-let progress=0;
-
-const fill=document.getElementById("fill");
-const percent=document.getElementById("percent");
-const result=document.getElementById("result");
-
-result.innerHTML="";
-
-const interval=setInterval(()=>{
-
-progress++;
-
-fill.style.width=progress+"%";
-percent.innerHTML=progress+"%";
-
-if(progress==25)
-result.innerHTML="😊 Hmm... Looking good!";
-
-if(progress==50)
-result.innerHTML="🥰 Definitely something special...";
-
-if(progress==75)
-result.innerHTML="❤️ Almost there...";
-
-if(progress>=100){
-
-clearInterval(interval);
-
-result.innerHTML="💖 100% Perfect Match! Happy Girlfriend's Day ❤️";
+100%{
+transform:translateY(-120vh) scale(1.6);
+opacity:0;
+}
 
 }
 
-},30);
+/* Love Meter */
+
+.meter{
+
+width:80%;
+height:30px;
+background:#ffd8df;
+margin:20px auto;
+border-radius:30px;
+overflow:hidden;
+
+}
+
+.fill{
+
+height:100%;
+width:0;
+background:#ff2d55;
+transition:.1s;
+
+}
+
+#percent{
+
+font-size:40px;
+color:#ff2d55;
+
+}
+
+/* Catch Me */
+
+.buttons{
+
+position:relative;
+height:180px;
+margin-top:30px;
+
+}
+
+.buttons button{
+
+padding:15px 35px;
+border:none;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+#yes{
+
+background:#ff2d55;
+color:white;
+position:absolute;
+left:30%;
+
+}
+
+#no{
+
+background:#555;
+color:white;
+position:absolute;
+right:30%;
+
+}
+
+/* Popup */
+
+.popup{
+
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+
+}
+
+.box{
+
+background:white;
+padding:40px;
+border-radius:20px;
+text-align:center;
+max-width:450px;
+
+}
+
+.box h2{
+
+color:#ff2d55;
+
+}
+
+.box button{
+
+margin-top:20px;
+padding:12px 30px;
+border:none;
+background:#ff2d55;
+color:white;
+border-radius:30px;
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<h1 id="typing"></h1>
+
+<p>
+Happy Girlfriend's Day ❤️<br><br>
+
+Thank you for making my life brighter,
+my heart happier,
+and every day more beautiful.
+</p>
+<hr>
+
+<h2>📸 Our Beautiful Memories ❤️</h2>
+
+<p>
+Every picture reminds me that the best moments of my life have one thing in common...
+<strong>You.</strong>
+</p>
+
+<div class="gallery">
+
+    <div class="card">
+        <img src="photo1.jpg">
+        <h3>Our First Selfie ❤️</h3>
+    </div>
+
+    <div class="card">
+        <img src="photo2.jpg">
+        <h3>Favorite Day Together 🌸</h3>
+    </div>
+
+    <div class="card">
+        <img src="photo4.jpg">
+        <h3>Forever My Favorite ❤️</h3>
+    </div>
+
+    <div class="card">
+        <img src="photo5.jpg">
+        <h3>Beautiful Memories ✨</h3>
+    </div>
+
+    <div class="card">
+        <img src="photo8.jpg">
+        <h3>Us ❤️</h3>
+    </div>
+
+</div>
+
+<hr>
+<hr>
+
+<h2>❤️ Love Meter ❤️</h2>
+
+<div class="meter">
+<div class="fill" id="fill"></div>
+</div>
+
+<h1 id="percent">0%</h1>
+
+<button class="btn" onclick="loveMeter()">
+
+Check Love ❤️
+
+</button>
+
+<p id="loveText"></p>
+
+<hr>
+
+<h2>😜 Catch Me If You Can</h2>
+
+<p>Can you press NO? 🤭</p>
+
+<div class="buttons">
+
+<button id="yes">
+
+YES ❤️
+
+</button>
+
+<button id="no">
+
+NO 🙈
+
+</button>
+
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="box">
+
+<h2>❤️ I Knew It ❤️</h2>
+
+<p>
+
+Happy Girlfriend's Day ❤️<br><br>
+
+You're my favorite person,
+my best friend,
+and the love of my life.
+
+</p>
+
+<button onclick="closePopup()">
+
+Love You ❤️
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* Start music after first click */
+
+document.addEventListener("click",function(){
+
+document.getElementById("music").play();
+
+},{once:true});
+
+/* Typing */
+
+const text="❤️ Happy Girlfriend's Day ❤️";
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,80);
+
+}
+
+}
+
+type();
+
+/* Floating Hearts */
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+const emojis=["❤️","💖","💕","💗","💘","💞"];
+
+heart.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(15+Math.random()*30)+"px";
+
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.getElementById("hearts").appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},8000);
+
+},300);
+
+/* Love Meter */
+
+function loveMeter(){
+
+let value=0;
+
+const fill=document.getElementById("fill");
+
+const percent=document.getElementById("percent");
+
+const txt=document.getElementById("loveText");
+
+txt.innerHTML="";
+
+const run=setInterval(()=>{
+
+value++;
+
+fill.style.width=value+"%";
+
+percent.innerHTML=value+"%";
+
+if(value>=100){
+
+clearInterval(run);
+
+percent.innerHTML="9999% ❤️";
+
+txt.innerHTML="💖 Error: Too much love detected! System overloaded ❤️";
+
+}
+
+},20);
+
+}
+
+/* Catch Me */
+
+const no=document.getElementById("no");
+
+function move(){
+
+const x=Math.random()*(window.innerWidth-120);
+
+const y=Math.random()*(window.innerHeight-80);
+
+no.style.position="fixed";
+
+no.style.left=x+"px";
+
+no.style.top=y+"px";
+
+}
+
+no.addEventListener("mouseover",move);
+
+no.addEventListener("click",move);
+
+/* Yes Button */
+
+document.getElementById("yes").onclick=function(){
+
+document.getElementById("popup").style.display="flex";
+
+}
+
+/* Close */
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
 
 }
 
