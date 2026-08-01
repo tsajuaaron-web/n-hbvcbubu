@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Girlfriend's Day❤️</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<body>
+<div class="container">
+<div id="hearts-container"></div>
+
+<!-- Your other content -->
+
+<script src="script.js"></script>
+</body>
+
+<h1>Happy Girlfriend's Day Myyy Cutiee Noruuuuss😋 ❤️</h1>
+
+<img src="https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=800"
+class="photo">
+
+<p>
+Every moment with you becomes my favorite memory.
+Thank you for filling my life with love, happiness and endless smiles.
+</p>
+
+<a href="memories.html" class="btn">Next ➜</a>
+<div class="love-meter">
+
+    <h2>❤️ Love Meter ❤️</h2>
+
+    <div class="meter">
+        <div class="fill" id="fill"></div>
+    </div>
+
+    <h1 id="percent">0%</h1>
+
+    <button onclick="startLoveMeter()" class="btn">
+        💖 Check Love
+    </button>
+
+    <p id="result"></p>
+
+</div>
+</div>
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.onload = () => {
+    const time = localStorage.getItem("musicTime");
+    if (time) music.currentTime = time;
+
+    music.play().catch(() => {});
+};
+
+setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+}, 1000);
+</script>
+</audio>
+<script>
+
+function startLoveMeter(){
+
+let progress=0;
+
+const fill=document.getElementById("fill");
+const percent=document.getElementById("percent");
+const result=document.getElementById("result");
+
+result.innerHTML="";
+
+const interval=setInterval(()=>{
+
+progress++;
+
+fill.style.width=progress+"%";
+percent.innerHTML=progress+"%";
+
+if(progress==25)
+result.innerHTML="😊 Hmm... Looking good!";
+
+if(progress==50)
+result.innerHTML="🥰 Definitely something special...";
+
+if(progress==75)
+result.innerHTML="❤️ Almost there...";
+
+if(progress>=100){
+
+clearInterval(interval);
+
+result.innerHTML="💖 100% Perfect Match! Happy Girlfriend's Day ❤️";
+
+}
+
+},30);
+
+}
+
+</script>
+
+</body>
+</html>

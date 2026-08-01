@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="hearts-container"></div>
+
+<div class="container">
+
+<h1>📸 Our Beautiful Memories</h1>
+
+<div class="gallery">
+
+<img src="photo1.jpg">
+<img src="photo5.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo2.jpg">
+<img src="photo8.jpg">
+
+</div>
+
+<p>
+Every picture tells a story...
+Every smile reminds me why I fell in love with you.
+No matter where life takes us, you'll always be my favorite place.
+</p>
+
+<a href="index.html" class="btn">⬅ Previous</a>
+
+<a href="wishes.html" class="btn">
+Next ➜
+</a>
+
+</div>
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.onload = () => {
+    const time = localStorage.getItem("musicTime");
+    if (time) music.currentTime = time;
+
+    music.play().catch(() => {});
+};
+
+setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+}, 1000);
+</script>
+
+
+</body>
+</html>

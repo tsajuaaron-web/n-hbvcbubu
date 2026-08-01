@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>💖 A Message For You 💖</h1>
+
+<p class="letter">
+
+You are the reason behind my happiest days,
+my biggest smiles,
+and my strongest heartbeat.
+
+Thank you for standing beside me through everything.
+
+I promise to keep choosing you,
+today,
+tomorrow,
+and every day after that.
+
+Happy Girlfriend's Day, My Love ❤️
+
+</p>
+
+<h2>❤️ Forever & Always ❤️</h2>
+
+<a href="index.html" class="btn">
+🏠 Home
+</a>
+
+</div>
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.onload = () => {
+    const time = localStorage.getItem("musicTime");
+    if (time) music.currentTime = time;
+
+    music.play().catch(() => {});
+};
+
+setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+}, 1000);
+
+</script>
+
+</body>
+</html>
